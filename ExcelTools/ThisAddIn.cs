@@ -11,8 +11,10 @@ namespace ExcelTools
 {
     public partial class ThisAddIn
     {
+        public Excel.Application ExcelApp;
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            ExcelApp = Globals.ThisAddIn.Application;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
