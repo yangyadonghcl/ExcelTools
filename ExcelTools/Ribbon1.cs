@@ -70,18 +70,18 @@ namespace ExcelTools
                 if (Convert.ToInt32(this.amount.Text) > ExcelApp.Application.Rows.Count)
                 {
                     MessageBox.Show("选择的数量不能大于工作表的行数", "提示");
-                    this.amount.Text = "";
+                    this.amount.Text = "999";
                 }
                 else if (Convert.ToInt32(this.amount.Text) < 1)
                 {
                     MessageBox.Show("请输入大于0的正整数", "提示");
-                    this.amount.Text = "";
+                    this.amount.Text = "999";
                 }
             }
             catch
             {
                 MessageBox.Show("请输入大于0的正整数", "提示");
-                this.amount.Text = "";
+                this.amount.Text = "999";
             }
         }
     }
