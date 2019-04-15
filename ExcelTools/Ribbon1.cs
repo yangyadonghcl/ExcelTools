@@ -50,7 +50,7 @@ namespace ExcelTools
                 else if (this.content.Checked == false)
                 {
                     ExcelApp.ActiveCell.Resize[i, 1].Select();
-                    ExcelApp.Application.Selection(MaxRow, 1).Activate();
+                    ExcelApp.Application.Selection(i, 1).Activate();
                     if (this.copy.Checked == true)
                     {
                         ExcelApp.Application.Selection.Copy();
