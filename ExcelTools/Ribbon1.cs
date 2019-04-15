@@ -28,8 +28,7 @@ namespace ExcelTools
             {
                 double MaxRow = ExcelApp.Application.WorksheetFunction.Min(ExcelApp.Application.WorksheetFunction.CountA(ExcelApp.Application.ActiveCell.Resize[i, 1]), i);
                 if (this.content.Checked == true && MaxRow != 0)
-                {
-                    if (ExcelApp.Application.WorksheetFunction.CountA(ExcelApp.Application.ActiveCell.Resize[MaxRow, 1]) == MaxRow)
+                {                   if (ExcelApp.Application.WorksheetFunction.CountA(ExcelApp.Application.ActiveCell.Resize[MaxRow, 1]) == MaxRow)
                     {
                         ExcelApp.ActiveCell.Resize[MaxRow, 1].Select();
                         ExcelApp.Application.Selection(MaxRow, 1).Activate();
