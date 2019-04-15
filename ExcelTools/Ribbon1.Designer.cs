@@ -40,7 +40,6 @@
             this.content = this.Factory.CreateRibbonCheckBox();
             this.copy = this.Factory.CreateRibbonCheckBox();
             this.select = this.Factory.CreateRibbonButton();
-            this.label1 = this.Factory.CreateRibbonLabel();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +53,6 @@
             // 
             // group1
             // 
-            this.group1.Items.Add(this.label1);
             this.group1.Items.Add(this.amount);
             this.group1.Items.Add(this.content);
             this.group1.Items.Add(this.copy);
@@ -87,11 +85,6 @@
             this.select.ShowImage = true;
             this.select.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.select_Click);
             // 
-            // label1
-            // 
-            this.label1.Label = "label1";
-            this.label1.Name = "label1";
-            // 
             // Ribbon1
             // 
             this.Name = "Ribbon1";
@@ -114,7 +107,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox content;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox copy;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton select;
-        internal Microsoft.Office.Tools.Ribbon.RibbonLabel label1;
     }
 
     partial class ThisRibbonCollection
