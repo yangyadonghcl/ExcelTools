@@ -40,18 +40,14 @@
             this.content = this.Factory.CreateRibbonCheckBox();
             this.copy = this.Factory.CreateRibbonCheckBox();
             this.select = this.Factory.CreateRibbonButton();
-            this.group2 = this.Factory.CreateRibbonGroup();
-            this.checkBox1 = this.Factory.CreateRibbonCheckBox();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
-            this.group2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tab1.Groups.Add(this.group1);
-            this.tab1.Groups.Add(this.group2);
             this.tab1.Label = "CustomTools";
             this.tab1.Name = "tab1";
             // 
@@ -91,17 +87,6 @@
             this.select.ShowImage = true;
             this.select.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.select_Click);
             // 
-            // group2
-            // 
-            this.group2.Items.Add(this.checkBox1);
-            this.group2.Label = "group2";
-            this.group2.Name = "group2";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.Label = "checkBox1";
-            this.checkBox1.Name = "checkBox1";
-            // 
             // Ribbon1
             // 
             this.Name = "Ribbon1";
@@ -112,8 +97,6 @@
             this.tab1.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
-            this.group2.ResumeLayout(false);
-            this.group2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -126,8 +109,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox content;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox copy;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton select;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox1;
     }
 
     partial class ThisRibbonCollection
