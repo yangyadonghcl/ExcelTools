@@ -82,6 +82,7 @@
             // select
             // 
             this.select.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.select.Image = global::ExcelTools.Properties.Resources.下箭头;
             this.select.Label = "选择";
             this.select.Name = "select";
             this.select.ShowImage = true;

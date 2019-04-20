@@ -7,6 +7,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace ExcelTools
 {
@@ -17,49 +18,59 @@ namespace ExcelTools
         {
             ExcelApp = Globals.ThisAddIn.Application;
             this.copy.Checked = true;
-            this.content.Checked = true;
+            this.content.Checked = false;
             this.amount.Text = 999.ToString();
         }
 
         private void select_Click(object sender, RibbonControlEventArgs e)
         {
             string i = this.amount.Text;
-            if (ExcelApp.Application.ActiveCell.Row + Convert.ToInt32(this.amount.Text) <= ExcelApp.Application.Rows.Count)
+            if (Microsoft.VisualBasic.Information.TypeName(ExcelApp.Selection)=="Range")
             {
-                double MaxRow = ExcelApp.Application.WorksheetFunction.Min(ExcelApp.Application.WorksheetFunction.CountA(ExcelApp.Application.ActiveCell.Resize[i, 1]), i);
-                if (this.content.Checked == true && MaxRow != 0)
-                {                   if (ExcelApp.Application.WorksheetFunction.CountA(ExcelApp.Application.ActiveCell.Resize[MaxRow, 1]) == MaxRow)
+                if (ExcelApp.Application.ActiveCell.Row + Convert.ToInt32(this.amount.Text) <= ExcelApp.Application.Rows.Count)
+                {
+                    double MaxRow = ExcelApp.Application.WorksheetFunction.Min(ExcelApp.Application.WorksheetFunction.CountA(ExcelApp.Application.ActiveCell.Resize[i, 1]), i);
+                    if (this.content.Checked == true && MaxRow != 0)
                     {
-                        ExcelApp.ActiveCell.Resize[MaxRow, 1].Select();
-                        ExcelApp.Application.Selection(MaxRow, 1).Activate();
+                        if (ExcelApp.Application.WorksheetFunction.CountA(ExcelApp.Application.ActiveCell.Resize[MaxRow, 1]) == MaxRow)
+                        {
+
+                            ExcelApp.ActiveCell.Offset[Convert.ToInt32(ExcelApp.Selection.Cells.Count > 1) * 1, 0].Resize[MaxRow, 1].Select();
+                            ExcelApp.Application.Selection(MaxRow, 1).Activate();
+
+                            if (this.copy.Checked == true)
+                            {
+                                ExcelApp.Application.Selection.Copy();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("请保证选择区域数据连续", "提示");
+                        }
+                    }
+                    else if (this.content.Checked == true && MaxRow == 0)
+                    {
+                        MessageBox.Show("所选区域无内容", "提示");
+                    }
+                    else if (this.content.Checked == false)
+                    {
+                        ExcelApp.ActiveCell.Offset[Convert.ToInt32(ExcelApp.Selection.Cells.Count > 1) * 1, 0].Resize[i, 1].Select();
+                        ExcelApp.Application.Selection(i, 1).Activate();
                         if (this.copy.Checked == true)
                         {
                             ExcelApp.Application.Selection.Copy();
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("请保证选择区域数据连续", "提示");
-                    }
                 }
-                else if (this.content.Checked == true && MaxRow == 0)
+                else
                 {
-                    MessageBox.Show("所选区域无内容", "提示");
-                }
-                else if (this.content.Checked == false)
-                {
-                    ExcelApp.ActiveCell.Resize[i, 1].Select();
-                    ExcelApp.Application.Selection(i, 1).Activate();
-                    if (this.copy.Checked == true)
-                    {
-                        ExcelApp.Application.Selection.Copy();
-                    }
+                    MessageBox.Show("要选择的区域超出当前工作表最大行号，请重新设置选择数量", "提示");
                 }
             }
-            else
-            {
-                MessageBox.Show("要选择的区域超出当前工作表最大行号，请重新设置选择数量", "提示");
-            }
+        else
+         {
+                MessageBox.Show("请选择单元格");
+         }
 
         }
 
@@ -84,5 +95,6 @@ namespace ExcelTools
                 this.amount.Text = "999";
             }
         }
+ 
     }
 }
