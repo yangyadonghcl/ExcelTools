@@ -18,7 +18,7 @@ namespace ExcelTools
         {
             ExcelApp = Globals.ThisAddIn.Application;
             this.copy.Checked = true;
-            this.content.Checked = false;
+            this.content.Checked = true;
             this.amount.Text = 999.ToString();
         }
 
