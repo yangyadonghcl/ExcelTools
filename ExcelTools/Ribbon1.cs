@@ -35,8 +35,8 @@ namespace ExcelTools
                         if (ExcelApp.Application.WorksheetFunction.CountA(ExcelApp.Application.ActiveCell.Resize[MaxRow, 1]) == MaxRow)
                         {
 
-                            ExcelApp.ActiveCell.Offset[Convert.ToInt32(ExcelApp.Selection.Cells.Count > 1) * 1, 0].Resize[MaxRow, 1].Select();
-                            ExcelApp.Application.Selection(MaxRow, 1).Activate();
+                            ExcelApp.ActiveCell.Offset[Convert.ToInt32(ExcelApp.Selection.Cells.Count > 1) * 1, 0].Resize[MaxRow-1, 1].Select();
+                            ExcelApp.Application.Selection(MaxRow-1, 1).Activate();
 
                             if (this.copy.Checked == true)
                             {
